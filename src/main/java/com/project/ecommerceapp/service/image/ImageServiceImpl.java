@@ -16,18 +16,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    This class is a service implementation that provides methods for managing images associated with products.
+    Using ImageRepository class to interact with the image database and the ProductService class to retrieve product information.
+*/
 @Service
 @RequiredArgsConstructor
 public class ImageServiceImpl implements ImageService{
     private final ImageRepository imageRepository;
     private final ProductService productService;
 
+    /*
+        - Retrieves image by id
+        - id : The id of the image to retrieve
+        - Returns image with specified id and will throw exception if image not found
+    */
     @Override
     public Image getImageById(Long id) {
         return imageRepository.findById(id)
                 .orElseThrow(() -> new ResourceException("No image found with id: " + id));
     }
 
+    /*
+        - Delete image by his id
+        - id : The id of the image to retrieve and will deleted
+        - Will throw exception if image not found
+    */
     @Override
     public void deleteImageById(Long id) {
         imageRepository.findById(id).ifPresentOrElse(imageRepository::delete, () -> {
@@ -35,6 +49,13 @@ public class ImageServiceImpl implements ImageService{
         });
     }
 
+    /*
+        - Save list of image from the product
+        - productId : Id from product who associated with the images.
+        - file : A list of MultipartFile objects representing the images to save.
+        - Return a list of ImageDto objects representing the saved images.
+        - Throw error exception if an error appears while saving the images.
+    */
     @Override
     public List<ImageDto> saveImages(Long productId, List<MultipartFile> files) {
         Product product = productService.getProductById(productId);
@@ -68,6 +89,12 @@ public class ImageServiceImpl implements ImageService{
         return saveImagedDto;
     }
 
+    /*
+        - Updating existing image.
+        - file : Updated image file.
+        - imageId : The ID of the image to update.
+        - Throw error exception if errors appear while updating images.
+    */
     @Override
     public void updateImage(MultipartFile file, Long imageId) {
         Image image = getImageById(imageId);
