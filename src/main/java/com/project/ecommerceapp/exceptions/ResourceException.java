@@ -1,7 +1,7 @@
 package com.project.ecommerceapp.exceptions;
 
-public class ProductNotFoundException extends RuntimeException{
-    public ProductNotFoundException(String message) {
+public class ResourceException extends RuntimeException{
+    public ResourceException(String message) {
         super(message);
     }
 }

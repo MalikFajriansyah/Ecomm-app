@@ -1,5 +1,5 @@
 package com.project.ecommerceapp.service.product;
-import com.project.ecommerceapp.exceptions.ProductNotFoundException;
+import com.project.ecommerceapp.exceptions.ResourceException;
 import com.project.ecommerceapp.model.Category;
 import com.project.ecommerceapp.model.Product;
 import com.project.ecommerceapp.repository.CategoryRepository;
@@ -46,14 +46,14 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
+                .orElseThrow(() -> new ResourceException("Product Not Found"));
     }
 
     @Override
     public void deleteProductById(Long id) {
         productRepository.findById(id)
                 .ifPresentOrElse(productRepository::delete, () -> {
-                    throw new ProductNotFoundException("Product Not Found");
+                    throw new ResourceException("Product Not Found");
                 });
     }
 
@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.findById(productId)
                 .map(product -> updateExistingProduct(product, request))
                 .map(productRepository::save)
-                .orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
+                .orElseThrow(() -> new ResourceException("Product Not Found"));
     }
 
     private Product updateExistingProduct(Product product, UpdateProductRequest request){
