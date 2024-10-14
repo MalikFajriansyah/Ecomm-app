@@ -1,5 +1,6 @@
 package com.project.ecommerceapp.service.product;
 
+import com.project.ecommerceapp.dto.ProductDto;
 import com.project.ecommerceapp.model.Product;
 import com.project.ecommerceapp.request.AddProductRequest;
 import com.project.ecommerceapp.request.UpdateProductRequest;

@@ -1,4 +1,5 @@
 package com.project.ecommerceapp.service.product;
+import com.project.ecommerceapp.dto.ProductDto;
 import com.project.ecommerceapp.exceptions.ResourceException;
 import com.project.ecommerceapp.model.Category;
 import com.project.ecommerceapp.model.Product;
