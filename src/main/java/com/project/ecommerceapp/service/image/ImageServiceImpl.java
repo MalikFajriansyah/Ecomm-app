@@ -51,7 +51,7 @@ public class ImageServiceImpl implements ImageService{
 
     /*
         - Save list of image from the product
-        - productId : Id from product who associated with the images.
+        - productId : id from product who associated with the images.
         - file : A list of MultipartFile objects representing the images to save.
         - Return a list of ImageDto objects representing the saved images.
         - Throw error exception if an error appears while saving the images.
