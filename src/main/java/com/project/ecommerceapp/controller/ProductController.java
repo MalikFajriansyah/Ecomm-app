@@ -35,7 +35,7 @@ public class ProductController {
             Product product = productService.getProductById(productId);
             return ResponseEntity.ok(new ApiResponse("Product: ", product));
         } catch (ResourceException e) {
-            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(e.getMessage(), null));
+            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse("Error", e.getMessage()));
         }
     }
 

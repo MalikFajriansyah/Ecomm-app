@@ -1,5 +1,4 @@
 package com.project.ecommerceapp.service.product;
-import com.project.ecommerceapp.dto.ProductDto;
 import com.project.ecommerceapp.exceptions.ResourceException;
 import com.project.ecommerceapp.model.Category;
 import com.project.ecommerceapp.model.Product;
@@ -148,7 +147,7 @@ public class ProductServiceImpl implements ProductService{
     */
     @Override
     public List<Product> getProductsByName(String name) {
-        return productRepository.findByProductsName(name);
+        return productRepository.findByName(name);
     }
 
     /*
@@ -159,7 +158,7 @@ public class ProductServiceImpl implements ProductService{
     */
     @Override
     public List<Product> getProductsByBrandAndName(String brand, String name) {
-        return productRepository.findByBrandAndProductsName(brand, name);
+        return productRepository.findByBrandAndName(brand, name);
     }
 
     /*
@@ -170,6 +169,6 @@ public class ProductServiceImpl implements ProductService{
     */
     @Override
     public Long countProductsByBrandAndName(String brand, String name) {
-        return productRepository.countByBrandAndProductsName(brand, name);
+        return productRepository.countByBrandAndName(brand, name);
     }
 }
