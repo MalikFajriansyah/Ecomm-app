@@ -1,6 +1,9 @@
 package com.project.ecommerceapp.service.product;
+import com.project.ecommerceapp.dto.ProductDto;
 import com.project.ecommerceapp.exceptions.ResourceException;
+import com.project.ecommerceapp.mapper.ProductMapper;
 import com.project.ecommerceapp.model.Category;
+import com.project.ecommerceapp.model.Image;
 import com.project.ecommerceapp.model.Product;
 import com.project.ecommerceapp.repository.CategoryRepository;
 import com.project.ecommerceapp.repository.ProductRepository;
@@ -171,4 +174,15 @@ public class ProductServiceImpl implements ProductService{
     public Long countProductsByBrandAndName(String brand, String name) {
         return productRepository.countByBrandAndName(brand, name);
     }
+
+    @Override
+    public ProductDto getProductDto(Product product) {
+        return ProductMapper.INSTANCE.producToProductDto(product);
+    }
+
+    @Override
+    public List<ProductDto> getListProductDto(List<Product> products) {
+        return ProductMapper.INSTANCE.productlistToProductDto(products);
+    }
+
 }
