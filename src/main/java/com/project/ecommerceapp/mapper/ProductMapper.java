@@ -16,5 +16,5 @@ public interface ProductMapper {
     @Mapping(source = "category.name", target = "category")
     ProductDto producToProductDto(Product product);
 
-    List<ProductDto> productlistToProductDto(List<Product> products);
+    List<ProductDto> productListToProductDto(List<Product> products);
 }
